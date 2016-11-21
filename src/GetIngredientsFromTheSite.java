@@ -14,6 +14,8 @@ import java.util.List;
 public class GetIngredientsFromTheSite {
 
     private final String SITE = "http://www.bazareceptov.ru/ingredients.php?page=";
+    MongoConnector mongoConnector=new MongoConnector();
+
     private List fullListOfIngredients = new LinkedList();
 
     public void parsing() {
@@ -47,6 +49,9 @@ public class GetIngredientsFromTheSite {
             }
 
         }
+
+
+    mongoConnector.insertIngredientsIntoDBFromTheSite("anycipe_crawler","ingredients",fullListOfIngredients);
     }
 
 

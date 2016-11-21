@@ -16,6 +16,9 @@ public class ParsingSay7Info {
     private String link;
     private String description;
 
+    MongoConnector mongoConnector = new MongoConnector();
+
+
 
     // коннект сюда происходит из класса Crawler. Туда ссылка на сайт попадает из текстового документа, в который будем вносить новые сайты
     public void parsing(Document doc) {
@@ -35,6 +38,9 @@ public class ParsingSay7Info {
 
         ingredients(doc);
         instruction(doc);
+
+
+        mongoConnector.mongoConnect("anycipe_crawler", collectionName, receiptName, link, ingredients, description, instruction);
 
 
     }

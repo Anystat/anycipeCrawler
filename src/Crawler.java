@@ -36,7 +36,7 @@ public class Crawler {
                 pagesToVisit.addAll(leg.getLinks());
                 System.out.println("\n**Done** Visited " + pagesVisited.size() + " web page(s)");
 
-                //  pars.parsing(CrawlerLeg.htmlDocument);
+                  pars.parsing(CrawlerLeg.htmlDocument);
 
                /* for (int j = 0; j < searchWord.size(); j++) {
 

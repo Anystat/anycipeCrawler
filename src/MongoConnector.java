@@ -2,6 +2,7 @@ import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
+import org.apache.xpath.SourceTree;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -15,10 +16,16 @@ import static java.util.Arrays.asList;
  */
 
 public class MongoConnector {
-    String uri = "54.93.164.57";
-    MongoDatabase db;
+    String uri = "85.143.221.95";
+   MongoDatabase db;
     MongoClient mongoClient;
 
+public void checkConnect(){
+    mongoClient = new MongoClient(uri);
+
+
+    checkBasesNamesOfMongoDB(mongoClient);
+}
 
     public void mongoConnect(String databaseName) {
 
@@ -34,10 +41,9 @@ public class MongoConnector {
     public void mongoConnect(String databaseName, String collectionName, String receiptName, String link, ArrayList<String> ingredientUnits, String descriptrion, String instruction) {
 
         mongoClient = new MongoClient(uri);
-        db = mongoClient.getDatabase(databaseName); // сейчас это databaseName=test,
+        db = mongoClient.getDatabase(databaseName); // сейчас это databaseName="anycipe_crawler"
 
         insertReceiptToMongoDB(collectionName, receiptName, link, ingredientUnits, descriptrion, instruction);
-        checkContentOfCollectionMangoDb(db, collectionName);
 
         mongoClient.close();
     }
@@ -54,6 +60,7 @@ public class MongoConnector {
         Document listOfIngredients = new Document();
         for (int i = 0; i < ingredients.size(); i++) {
             listOfIngredients.append(i + " ингредиент", ingredients.get(i));
+            System.out.println("Ингредиентов добавлено: " + i);
         }
 
         db.getCollection(collectionName).insertOne(  //ингредиенты взятые из 1 какого-то сайта. Процесс производится в классе GetIngredientsFromTheSite
