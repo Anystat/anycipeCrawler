@@ -15,7 +15,7 @@ import static java.util.Arrays.asList;
  */
 
 public class MongoConnector {
-    String uri = "54.93.164.57";
+    String uri = "85.143.221.95";
     MongoDatabase db;
     MongoClient mongoClient;
 
@@ -26,8 +26,10 @@ public class MongoConnector {
         db = mongoClient.getDatabase(databaseName); // сейчас это databaseName=test,
 
         checkCollectionsMongoDB(db);
-        checkContentOfCollectionMangoDb(db, "receipts");
-        checkBasesNamesOfMongoDB(mongoClient);
+       // checkContentOfCollectionMangoDb(db, "receipts");
+        //checkBasesNamesOfMongoDB(mongoClient);
+        deleteCollection(db,"receipts");
+        checkCollectionsMongoDB(db);
         mongoClient.close();
     }
 
@@ -199,15 +201,20 @@ public class MongoConnector {
 */
 
 
-    public void checkContentOfCollectionMangoDb(MongoDatabase base, String collectionName) {
-        FindIterable<Document> iterable = base.getCollection(collectionName).find();
+    public void checkContentOfCollectionMangoDb(MongoDatabase base,  String collectionName) {
+        Iterable iterable = base.getCollection(collectionName).find();
 
+
+        for (Object document : iterable) {
+            System.out.println("Коллекция " + collectionName+" содержит " + document);  //печатает то, что мы внесли. Это не обязательные действия
+        }
+       /* FindIterable<Document> iterable = base.getCollection(collectionName).find();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
-                System.out.println("Коллекция " + collectionName + " содержит " + document);  //печатает то, что мы внесли. Это не обязательные действия
+                System.out.println("Коллекция " + collectionName " содержит " + document);  //печатает то, что мы внесли. Это не обязательные действия
             }
-        });
+        });*/
     }
 
     public void checkCollectionsMongoDB(MongoDatabase base) {  // Создаем итератор

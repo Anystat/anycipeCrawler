@@ -11,7 +11,7 @@ public class WebDriverExample {
         // создаем новый экземпляр html unit driver
         // Обратите внимание, что последующий код не закладывается на
         // конкретную, имплементацию, а только на интерфейс WebDriver.
-        System.setProperty("webdriver.chrome.driver", "lib\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "resources\\chromedriver.exe");
 
         WebDriver driver = new ChromeDriver();
 

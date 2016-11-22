@@ -43,27 +43,22 @@ System.out.println(pet.getKey() + " это " + pet.getValue());
 
 */
 
-        //  String listOfSites = "res\\ListOfSites.txt";
-        // String listOfIngredients = "res\\ListOfIngredients.txt";
+          String listOfSites = "resources\\ListOfSites.txt";
+        // String listOfIngredients = "resources\\ListOfIngredients.txt";
 
         // Filereader.read(listOfSites);
         //  Filereader.read(listOfIngredients);
 
-        //  Crawler spider = new Crawler();
-        //  spider.search(Filereader.read(listOfSites));
+          Crawler spider = new Crawler();
+          spider.search(Filereader.read(listOfSites));
 
 
-        //MongoConnector mongoConnector = new MongoConnector();
+       // MongoConnector mongoConnector = new MongoConnector();
         //mongoConnector.mongoConnect("test", collectionName, receiptName, link, ingredients, descriptrion, instruction);
 
 
 
 
-
-        System.setProperty("webdriver.chrome.driver", "lib\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("http://eda.ru/recepty/vypechka-deserty/jogurtovoe-morozhenoe-s-avokado-ogurcom-28448?from=recipescatalog");
 
 
 
