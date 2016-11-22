@@ -3,19 +3,14 @@ import java.util.*;
 
 public class Crawler {
     private static final int MAX_PAGES_TO_SEARCH = 100;
+    String currentUrl;
+    CrawlerLeg leg;
     private Set<String> pagesVisited = new HashSet<String>();
     private List<String> pagesToVisit = new LinkedList<String>();
-    private ParsingSay7Info pars;
-
-
-    //  http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-java/
-
 
     public void search(ArrayList url) {
-        pars = new ParsingSay7Info();
-        String currentUrl;
 
-        CrawlerLeg leg = new CrawlerLeg();
+        leg = new CrawlerLeg();
 
 
         for (int i = 0; i < url.size(); i++) {
@@ -28,12 +23,12 @@ public class Crawler {
 
                 } else {
 
-
                     currentUrl = nextUrl();
                 }
 
                 leg.crawl(currentUrl); // Lots of stuff happening here. Look at the crawl method in CrawlerLeg
                 pagesToVisit.addAll(leg.getLinks());
+
                 System.out.println("\n**Done** Visited " + pagesVisited.size() + " web page(s)");
 
                 //  pars.parsing(CrawlerLeg.htmlDocument);

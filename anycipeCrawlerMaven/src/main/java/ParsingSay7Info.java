@@ -9,17 +9,18 @@ import java.util.ArrayList;
  */
 public class ParsingSay7Info {
 
-    private ArrayList<String> ingredients = new ArrayList<String>();
+    private final String collectionName = "receipts";
+    private final String baseName = "anycipe_crawler";
     private String instruction;
     private String receiptName;
-    private String collectionName = "receipts";
-    private String link;
     private String description;
-
+    private String link;
+    private ArrayList<String> ingredients = new ArrayList<String>();
+    private MongoConnector mongoConnector;
 
     // коннект сюда происходит из класса Crawler. Туда ссылка на сайт попадает из текстового документа, в который будем вносить новые сайты
     public void parsing(Document doc) {
-
+        mongoConnector = new MongoConnector();
      /*   Document doc = null;
         try {
             doc = Jsoup.connect(url).userAgent(CrawlerLeg.USER_AGENT).get();
@@ -36,7 +37,7 @@ public class ParsingSay7Info {
         ingredients(doc);
         instruction(doc);
 
-
+        mongoConnector.mongoConnect(baseName, collectionName, receiptName, link, ingredients, description, instruction);
     }
 
     public void ingredients(Document document) {
@@ -63,6 +64,6 @@ public class ParsingSay7Info {
 
         Elements elements = document.body().select(".e-instructions");
         instruction = elements.text();
-        System.out.println(instruction);
+
     }
 }
