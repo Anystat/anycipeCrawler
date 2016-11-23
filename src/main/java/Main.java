@@ -5,8 +5,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-        String listOfSites = "anycipeCrawlerMaven\\src\\main\\resources\\ListOfSites.txt";
-        String listOfIngredients = "anycipeCrawlerMaven\\src\\main\\resources\\ListOfIngredients.txt";
+        String listOfSites = "src\\main\\resources\\ListOfSites.txt";
+        String listOfIngredients = "src\\main\\resources\\ListOfIngredients.txt";
 
 
 
@@ -17,13 +17,14 @@ public class Main {
         http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-java/
 */
 
-      //  MongoConnector mongoConnector = new MongoConnector();
-      //  mongoConnector.connectionOpen();
-
+//          MongoConnector mongoConnector = new MongoConnector();
+ //       GetIngredientsFromTheSite site = new GetIngredientsFromTheSite();
+//        site.parsing();
+//        mongoConnector.connectionOpen();
+//        mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
         Crawler spider = new Crawler();
         spider.search(Filereader.read(listOfSites));
-       // mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
-      //  mongoConnector.connectionClose();
+//          mongoConnector.connectionClose();
 
 
     }

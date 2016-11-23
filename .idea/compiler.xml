@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="anycipe_crawler" />
         <module name="anycipe_crawler1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="anycipe_crawler" target="1.5" />
       <module name="anycipe_crawler1" target="1.5" />
     </bytecodeTargetLevel>
   </component>

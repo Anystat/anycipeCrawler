@@ -29,11 +29,14 @@ public class CrawlerLeg {
      */
     public boolean crawl(String url) {
         Matcher matcher;
+        pars = new ParsingSay7Info();
+
         if (flagParsingStart == 0) {                   //Флаг сделан для того, чтобы проверять прошла первая итерация или нет. Надо придумать, как сделать красивее.
             regex = url.toString() + ".*$";         //Так как без флага при второй итерации и делее получается новая ссылка, которая еще больше ссужает поиск страниц
+        } else {
+            regex = url.toString() + "recipe/.*$";
         }
         Pattern pattern = Pattern.compile(regex);
-        pars = new ParsingSay7Info();
         flagParsingStart++;
 
 
@@ -73,25 +76,6 @@ public class CrawlerLeg {
             // We were not successful in our HTTP request
             return false;
         }
-    }
-
-
-    /**
-     * Performs a search on the body of on the HTML document that is retrieved. This method should
-     * only be called after a successful crawl.
-     *
-     * @param searchWord - The word or string to look for
-     * @return whether or not the word was found
-     */
-    public boolean searchForWord(String searchWord) {
-        // Defensive coding. This method should only be used after a successful crawl.
-        if (htmlDocument == null) {
-            System.out.println("ERROR! Call crawl() before performing analysis on the document");
-            return false;
-        }
-        System.out.println("Searching for the word " + searchWord + "...");
-        String bodyText = htmlDocument.body().text();
-        return bodyText.toLowerCase().contains(searchWord.toLowerCase());
     }
 
 

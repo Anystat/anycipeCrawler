@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by 23 on 17.11.2016.
+ * Created by Dred on 17.11.2016.
  */
 public class GetIngredientsFromTheSite {
 
@@ -42,7 +42,7 @@ public class GetIngredientsFromTheSite {
             Elements rows = table.select("tr");
 
             for (int k = 1; k < rows.size(); k++) { //first row is the col names so skip it.
-                Element row = rows.get(i);
+                Element row = rows.get(k);
                 Elements cols = row.select("td");
 
                 for (int j = 0; j < cols.size(); j++) {
