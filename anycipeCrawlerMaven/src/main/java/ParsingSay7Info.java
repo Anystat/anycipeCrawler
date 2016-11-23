@@ -5,7 +5,7 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 
 /**
- * Created by 23 on 16.11.2016.
+ * Created by Dred on 16.11.2016.
  */
 public class ParsingSay7Info {
 
