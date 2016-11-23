@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/anycipeCrawlerMaven/anycipeCrawler.iml" filepath="$PROJECT_DIR$/anycipeCrawlerMaven/anycipeCrawler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anycipe_crawler1.iml" filepath="$PROJECT_DIR$/anycipe_crawler1.iml" />
     </modules>
   </component>
 </project>
