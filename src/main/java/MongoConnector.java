@@ -43,7 +43,7 @@ public class MongoConnector {
 
         // checkCollectionsMongoDB(db);
 //        checkBasesNamesOfMongoDB(mongoClient);
-        deleteCollection(db, "receipts");
+//        deleteCollection(db, "receipts");
 //       deleteCollection(db, "ingredients");
 //        checkContentOfCollectionMangoDb(db, "receipts");
 //        checkContentOfCollectionMangoDb(db, "ingredients");
@@ -72,7 +72,7 @@ public class MongoConnector {
 
         Document listOfIngredients = new Document();
         for (int i = 0; i < ingredients.size(); i++) {
-            listOfIngredients.append("ingredient", ingredients.get(i));
+            listOfIngredients.append(i+1+" ingredient", ingredients.get(i));
         }
 
         db.getCollection(collectionName).insertOne(  //ингредиенты взятые из 1 какого-то сайта. Процесс производится в классе GetIngredientsFromTheSite

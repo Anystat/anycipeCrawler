@@ -16,14 +16,14 @@ public class Main {
         Crawler spider = new Crawler();
 
 
-       // site.parsing();
+//        site.parsing();
 //        mongoConnector.connectionOpen();
 //          mongoConnector.connectionClose();
-        spider.search(Filereader.read(listOfSites));
-
-
-        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, prepareReciept.getListOfReciepts());
-//        mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
+//        spider.search(Filereader.read(listOfSites));
+//
+//
+//        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, prepareReciept.getListOfReciepts());
+        mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
 
     }
 
