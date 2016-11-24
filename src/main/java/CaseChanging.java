@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 /**
- * Created by Dred on 13.11.2016.
+ * Created by Lofv on 13.11.2016.
  */
 public class CaseChanging {
     private Document doc = null;

@@ -9,7 +9,7 @@ import static java.util.Arrays.asList;
 
 
 /**
- * Created by Dred on 13.11.2016.
+ * Created by Lofv on 13.11.2016.
  */
 
 public class MongoConnector {
@@ -43,20 +43,22 @@ public class MongoConnector {
 
         // checkCollectionsMongoDB(db);
 //        checkBasesNamesOfMongoDB(mongoClient);
-//        deleteCollection(db, "receipts");
-//       deleteCollection(db, "ingredients");
-//        checkContentOfCollectionMangoDb(db, "receipts");
-//        checkContentOfCollectionMangoDb(db, "ingredients");
+        deleteCollection(db, "receipts");
+       deleteCollection(db, "ingredients");
+        checkContentOfCollectionMangoDb(db, "receipts");
+        checkContentOfCollectionMangoDb(db, "ingredients");
 
         mongoClient.close();
     }
 
-    public void mongoConnect(String databaseName, String collectionName, String receiptName, String link, ArrayList<String> ingredientUnits, String descriptrion, String instruction) {
+ /*   public void mongoConnect(String databaseName, String collectionName, String receiptName, String link, ArrayList<String> ingredientUnits, String descriptrion, String instruction) {
         mongoClient = new MongoClient(uri);
         db = mongoClient.getDatabase(databaseName);
         insertReceiptToMongoDB(collectionName, receiptName, link, ingredientUnits, descriptrion, instruction);
         mongoClient.close();
-    }
+    }*/
+
+
 
     /*
     * @ В методе insertIngredientsIntoDBFromTheSite в качестве databaseName и collectionName
@@ -77,28 +79,35 @@ public class MongoConnector {
                 new Document("Список ингредиентов", new Document()
                         .append("ingredients", asList(listOfIngredients))
                         .append("category", null)));
-        System.out.println(ingredients.size()+" ингредиентов добавлено в базу");
+        System.out.println(ingredients.size() + " ингредиентов добавлено в базу");
         mongoClient.close();
 
     }
 
-    public void insertReceiptToMongoDB(String collectionName, String receiptName, String link, ArrayList ingredients, String descriptrion, String instruction) {
+    /*    public void insertReceiptToMongoDB(String collectionName, String receiptName, String link, ArrayList ingredients, String descriptrion, String instruction) {
 
-        Document listOfIngredients = new Document();
+            Document listOfIngredients = new Document();
 
-        for (int i = 0; i < ingredients.size(); i++) {
-            listOfIngredients.append("ingredient", ingredients.get(i));
-        }
+            for (int i = 0; i < ingredients.size(); i++) {
+                listOfIngredients.append("ingredient", ingredients.get(i));
+            }
 
-        //находим коллекцию в которую нам надо что-то добавить. Если ее нет, то она создается, поэтому надо быть аккуратным с названиями
+            //находим коллекцию в которую нам надо что-то добавить. Если ее нет, то она создается, поэтому надо быть аккуратным с названиями
 
-        db.getCollection(collectionName).insertOne(  //receipts
-                new Document("Рецепт", new Document()
-                        .append("receipt", receiptName)
-                        .append("link", link)
-                        .append("ingredients", asList(listOfIngredients))
-                        .append("description", descriptrion)
-                        .append("instruction", instruction)));
+            db.getCollection(collectionName).insertOne(  //receipts
+                    new Document("Рецепт", new Document()
+                            .append("receipt", receiptName)
+                            .append("link", link)
+                            .append("ingredients", asList(listOfIngredients))
+                            .append("description", descriptrion)
+                            .append("instruction", instruction)));
+
+        }*/
+    public void insertReceiptToMongoDB(String databaseName,String collectionName, List<Document> reciepts) {
+        mongoClient = new MongoClient(uri);
+        db = mongoClient.getDatabase(databaseName);
+        db.getCollection(collectionName).insertMany(reciepts);
+        mongoClient.close();
 
     }
 

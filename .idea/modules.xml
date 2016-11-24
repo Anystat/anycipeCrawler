@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/anycipe_crawler.iml" filepath="$PROJECT_DIR$/anycipe_crawler.iml" />
-      <module fileurl="file://$PROJECT_DIR$/anycipe_crawler1.iml" filepath="$PROJECT_DIR$/anycipe_crawler1.iml" />
     </modules>
   </component>
 </project>

@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Dred on 17.11.2016.
+ * Created by Lofv on 17.11.2016.
  */
 public class GetIngredientsFromTheSite {
 
