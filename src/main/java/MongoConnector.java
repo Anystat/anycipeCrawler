@@ -44,9 +44,9 @@ public class MongoConnector {
         // checkCollectionsMongoDB(db);
 //        checkBasesNamesOfMongoDB(mongoClient);
         deleteCollection(db, "receipts");
-       deleteCollection(db, "ingredients");
-        checkContentOfCollectionMangoDb(db, "receipts");
-        checkContentOfCollectionMangoDb(db, "ingredients");
+//       deleteCollection(db, "ingredients");
+//        checkContentOfCollectionMangoDb(db, "receipts");
+//        checkContentOfCollectionMangoDb(db, "ingredients");
 
         mongoClient.close();
     }

@@ -28,7 +28,8 @@ public class ParsingSay7Info {
         ingredients(doc);
         instruction(doc);
 
-        prepareReciept.setListOfIngredients(receiptName, link, ingredients, description, instruction);
+        PrepareReciept.setListOfIngredients(receiptName, link, ingredients, description, instruction);
+        //prepareReciept.setListOfIngredients(receiptName, link, ingredients, description, instruction);
     }
 
     public void ingredients(Document document) {

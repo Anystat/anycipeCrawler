@@ -9,22 +9,24 @@ import static java.util.Arrays.asList;
  * Created by Lofv on 24.11.2016.
  */
 
-public class PrepareReciept {
+  class PrepareReciept {
 
 
-    private List<Document> listOfReciepts = new ArrayList<Document>();
-    private Document listOfIngredients = new Document();
-    private Document reciept;
+    static List<Document> listOfReciepts = new ArrayList<Document>();
+    static Document listOfIngredients = new Document();
+    static Document reciept;
 
-    public void setListOfIngredients(String receiptName, String link, ArrayList ingredients, String descriptrion, String instruction) {
+    public static void setListOfIngredients(String receiptName, String link, ArrayList ingredients, String descriptrion, String instruction) {
 
 
         for (int i = 0; i < ingredients.size(); i++) {
-            listOfIngredients.append("ingredient", ingredients.get(i));
+           listOfIngredients.append(i+1+" ingredient", ingredients.get(i));
+           // listOfIngredients.put(i+" ingredient", ingredients.get(i));
         }
 
 
-        reciept = new Document(receiptName, new Document()
+        reciept = new Document("reciept", new Document()
+                .append("recieptName",receiptName)
                 .append("link", link)
                 .append("ingredients", asList(listOfIngredients))
                 .append("description", descriptrion)
@@ -35,7 +37,8 @@ public class PrepareReciept {
     }
 
 
-    private void insertReceptIntoDoc(Document doc) {
+    public static void insertReceptIntoDoc(Document doc) {
+
         listOfReciepts.add(doc);
     }
 
