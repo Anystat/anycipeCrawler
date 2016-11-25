@@ -23,7 +23,8 @@ public class Main {
 //
 //
 //        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, prepareReciept.getListOfReciepts());
-        mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
+//        mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
+        RecursionTestCrawler recursionTestCrawler = new RecursionTestCrawler(Filereader.read(listOfSites));
 
     }
 

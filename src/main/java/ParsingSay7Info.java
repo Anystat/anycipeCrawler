@@ -23,13 +23,13 @@ public class ParsingSay7Info {
         Elements elements = doc.select(".p-summary");
         description = elements.text(); //Описание блюда
         receiptName = doc.title();  // Название блюда
-        link = doc.baseUri();
+        link = doc.baseUri();   //ссылка на рецепт
 
-        ingredients(doc);
-        instruction(doc);
+        ingredients(doc);  //добавляем в 1 List список ингредиентов для каждого блюда
+        instruction(doc); // формируем из
 
         PrepareReciept.setListOfIngredients(receiptName, link, ingredients, description, instruction);
-        //prepareReciept.setListOfIngredients(receiptName, link, ingredients, description, instruction);
+
     }
 
     public void ingredients(Document document) {
