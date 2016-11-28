@@ -5,8 +5,6 @@ import org.bson.Document;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
 
 /**
  * Created by Lofv on 13.11.2016.
@@ -44,20 +42,12 @@ public class MongoConnector {
         // checkCollectionsMongoDB(db);
 //        checkBasesNamesOfMongoDB(mongoClient);
 //        deleteCollection(db, "receipts");
-//       deleteCollection(db, "ingredients");
-//        checkContentOfCollectionMangoDb(db, "receipts");
+//        deleteCollection(db, "ingredients");
+        checkContentOfCollectionMangoDb(db, "receipts");
 //        checkContentOfCollectionMangoDb(db, "ingredients");
 
         mongoClient.close();
     }
-
- /*   public void mongoConnect(String databaseName, String collectionName, String receiptName, String link, ArrayList<String> ingredientUnits, String descriptrion, String instruction) {
-        mongoClient = new MongoClient(uri);
-        db = mongoClient.getDatabase(databaseName);
-        insertReceiptToMongoDB(collectionName, receiptName, link, ingredientUnits, descriptrion, instruction);
-        mongoClient.close();
-    }*/
-
 
 
     /*
@@ -69,18 +59,26 @@ public class MongoConnector {
         mongoClient = new MongoClient(uri);
         db = mongoClient.getDatabase(databaseName);
 
+        List<Document> listOfIngredients = new ArrayList();
 
-        Document listOfIngredients = new Document();
         for (int i = 0; i < ingredients.size(); i++) {
-            listOfIngredients.append(i+1+" ingredient", ingredients.get(i));
+            //  listOfIngredients.append(i+1+" ingredient", ingredients.get(i));
+            listOfIngredients.add(new Document("name", ingredients.get(i))
+                    .append("category", null));
+
         }
+        db.getCollection(collectionName).insertMany(listOfIngredients);
+
+        System.out.println(ingredients.size() + " ингредиентов добавлено в базу");
+        mongoClient.close();
+        /*
 
         db.getCollection(collectionName).insertOne(  //ингредиенты взятые из 1 какого-то сайта. Процесс производится в классе GetIngredientsFromTheSite
                 new Document("Список ингредиентов", new Document()
                         .append("ingredients", asList(listOfIngredients))
-                        .append("category", null)));
-        System.out.println(ingredients.size() + " ингредиентов добавлено в базу");
-        mongoClient.close();
+                        .append("category", null)));*/
+
+
 
     }
 
@@ -103,10 +101,10 @@ public class MongoConnector {
                             .append("instruction", instruction)));
 
         }*/
-    public void insertReceiptToMongoDB(String databaseName,String collectionName, List<Document> reciepts) {
+    public void insertReceiptToMongoDB(String databaseName, String collectionName, List<Document> receipts) {
         mongoClient = new MongoClient(uri);
         db = mongoClient.getDatabase(databaseName);
-        db.getCollection(collectionName).insertMany(reciepts);
+        db.getCollection(collectionName).insertMany(receipts);
         mongoClient.close();
 
     }
@@ -118,13 +116,6 @@ public class MongoConnector {
         for (Object document : iterable) {
             System.out.println("Коллекция " + collectionName + " содержит " + document);  //печатает то, что мы внесли. Это не обязательные действия
         }
-       /* FindIterable<Document> iterable = base.getCollection(collectionName).find();
-        iterable.forEach(new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                System.out.println("Коллекция " + collectionName " содержит " + document);  //печатает то, что мы внесли. Это не обязательные действия
-            }
-        });*/
         System.out.println("Отключение ");
     }
 

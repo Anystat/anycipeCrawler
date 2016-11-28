@@ -14,11 +14,11 @@ public class ParsingSay7Info {
     private String description;
     private String link;
     private ArrayList<String> ingredients = new ArrayList<String>();
-    private PrepareReciept prepareReciept;
+    private PrepareReceipt prepareReceipt;
 
     // коннект сюда происходит из класса Crawler. Туда ссылка на сайт попадает из текстового документа, в который будем вносить новые сайты
     public void parsing(Document doc) {
-        prepareReciept = new PrepareReciept();
+        prepareReceipt = new PrepareReceipt();
 
         Elements elements = doc.select(".p-summary");
         description = elements.text(); //Описание блюда
@@ -28,7 +28,7 @@ public class ParsingSay7Info {
         ingredients(doc);  //добавляем в 1 List список ингредиентов для каждого блюда
         instruction(doc); // формируем из
 
-        PrepareReciept.setListOfIngredients(receiptName, link, ingredients, description, instruction);
+        PrepareReceipt.setListOfIngredients(receiptName, link, ingredients, description, instruction);
 
     }
 

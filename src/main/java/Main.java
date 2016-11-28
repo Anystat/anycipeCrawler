@@ -11,20 +11,20 @@ public class Main {
         final String baseName = "anycipe_crawler";
 
         MongoConnector mongoConnector = new MongoConnector();
-        PrepareReciept prepareReciept = new PrepareReciept();
+        PrepareReceipt prepareReciept = new PrepareReceipt();
         GetIngredientsFromTheSite site = new GetIngredientsFromTheSite();
         Crawler spider = new Crawler();
 
 
-//        site.parsing();
+
+//       site.parsing();
 //        mongoConnector.connectionOpen();
 //          mongoConnector.connectionClose();
 //        spider.search(Filereader.read(listOfSites));
-//
-//
-//        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, prepareReciept.getListOfReciepts());
-//        mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
-        RecursionTestCrawler recursionTestCrawler = new RecursionTestCrawler(Filereader.read(listOfSites));
+
+//        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, prepareReciept.getListOfReceipts());
+        mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
+//        RecursionTestCrawler recursionTestCrawler = new RecursionTestCrawler(Filereader.read(listOfSites));
 
     }
 

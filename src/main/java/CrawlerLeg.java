@@ -17,11 +17,13 @@ public class CrawlerLeg {
     private List<String> links = new LinkedList<String>();
     private String regex;
     private int count;
-    private int flagParsingStart = 0;
     private ParsingSay7Info pars;
     private Pattern pattern;
     private Matcher matcher;
     private String mainUrl;
+    private int lastFlag;
+    private int stepFlag = 0;
+
 
     /**
      * This performs all the work. It makes an HTTP request, checks the response, and then gathers
@@ -30,32 +32,25 @@ public class CrawlerLeg {
      * @param url - The URL to visit
      * @return whether or not the crawl was successful
      */
-    public boolean crawl(String url) {
+
+
+    public boolean crawl(String url, int i) {
+
+        checkFlag(i, url);
+        stepFlag++;
 
         pars = new ParsingSay7Info();
 
-
-//Можно попробовать сделать рекурсию, типа, пока cook/ парсить, если содержит reciept/ то отправлять страницу. В таком случае удалится класс Crawler
-        // regex = url.toString() + ".*$";
-        if (flagParsingStart == 0) {
-            mainUrl = url;                           //Флаг сделан для того, чтобы проверять прошла первая итерация или нет. Надо придумать, как сделать красивее.
-            regex = mainUrl.toString() + ".*$";       //Так как без флага при второй итерации и делее получается новая ссылка, которая еще больше ссужает поиск страниц
-        }/* else {
-            regex = mainUrl.toString() + "recipe/.*$";
-        }*/
-
+        regex = "^" + mainUrl.toString() + "(cook/|recipe/|linkz_start).+$";
         pattern = Pattern.compile(regex);
 
-
-        flagParsingStart++;
         links.clear();
 
         try {
             Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
             Document document = connection.get();
 
-
-            if ((connection.response().statusCode() == 200) && (url.toString().contains("recipe"))) // 200 is the HTTP OK status code
+            if ((connection.response().statusCode() == 200) && (url.toString().contains("recipe/"))) // 200 is the HTTP OK status code
             // indicating that everything is great.
             {
                 System.out.println("\n**Visiting** Received web page at " + url);
@@ -76,7 +71,7 @@ public class CrawlerLeg {
 
                 while (matcher.find()) {
                     links.add(matcher.group());
-                  //  System.out.println(matcher.group());
+                    //  System.out.println(matcher.group());
                     count++;
                 }
             }
@@ -88,6 +83,24 @@ public class CrawlerLeg {
         }
     }
 
+
+    public void checkFlag(int currentFlag, String url) {
+
+
+        if (stepFlag == 0) {
+            lastFlag = currentFlag;
+            mainUrl = url;
+
+        }
+
+        if (lastFlag == currentFlag) {
+
+        } else {
+            lastFlag = currentFlag;
+            mainUrl = url;
+        }
+
+    }
 
     public List<String> getLinks() {
         return links;

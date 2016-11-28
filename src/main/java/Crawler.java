@@ -23,7 +23,7 @@ public class Crawler {
                     currentUrl = nextUrl();
                 }
 
-                leg.crawl(currentUrl); // Lots of stuff happening here. Look at the crawl method in CrawlerLeg
+                leg.crawl(currentUrl,i); // Lots of stuff happening here. Look at the crawl method in CrawlerLeg
                 pagesToVisit.addAll(leg.getLinks());
 
                 System.out.println("\n**Done** Visited " + pagesVisited.size() + " web page(s)");
