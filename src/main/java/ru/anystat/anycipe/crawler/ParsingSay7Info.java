@@ -1,3 +1,5 @@
+package ru.anystat.anycipe.crawler;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -16,7 +18,7 @@ public class ParsingSay7Info {
     private ArrayList<String> ingredients = new ArrayList<String>();
     private PrepareReceipt prepareReceipt;
 
-    // коннект сюда происходит из класса Crawler. Туда ссылка на сайт попадает из текстового документа, в который будем вносить новые сайты
+    // коннект сюда происходит из класса ru.anystat.anycipe.crawler.Crawler. Туда ссылка на сайт попадает из текстового документа, в который будем вносить новые сайты
     public void parsing(Document doc) {
         prepareReceipt = new PrepareReceipt();
 

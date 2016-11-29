@@ -1,3 +1,5 @@
+package ru.anystat.anycipe.crawler;
+
 /**
  * Created by Dred on 07.11.2016.
  */
@@ -20,11 +22,11 @@ public class Main {
 //       site.parsing();
 //        mongoConnector.connectionOpen();
 //          mongoConnector.connectionClose();
-//        spider.search(Filereader.read(listOfSites));
+//        spider.search(ru.anystat.anycipe.crawler.Filereader.read(listOfSites));
 
 //        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, prepareReciept.getListOfReceipts());
         mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
-//        RecursionTestCrawler recursionTestCrawler = new RecursionTestCrawler(Filereader.read(listOfSites));
+//        ru.anystat.anycipe.crawler.RecursionTestCrawler recursionTestCrawler = new ru.anystat.anycipe.crawler.RecursionTestCrawler(ru.anystat.anycipe.crawler.Filereader.read(listOfSites));
 
     }
 

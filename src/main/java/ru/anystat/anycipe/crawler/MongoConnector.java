@@ -1,3 +1,5 @@
+package ru.anystat.anycipe.crawler;
+
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
@@ -73,7 +75,7 @@ public class MongoConnector {
         mongoClient.close();
         /*
 
-        db.getCollection(collectionName).insertOne(  //ингредиенты взятые из 1 какого-то сайта. Процесс производится в классе GetIngredientsFromTheSite
+        db.getCollection(collectionName).insertOne(  //ингредиенты взятые из 1 какого-то сайта. Процесс производится в классе ru.anystat.anycipe.crawler.GetIngredientsFromTheSite
                 new Document("Список ингредиентов", new Document()
                         .append("ingredients", asList(listOfIngredients))
                         .append("category", null)));*/

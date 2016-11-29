@@ -1,3 +1,5 @@
+package ru.anystat.anycipe.crawler;
+
 import org.bson.Document;
 
 import java.util.ArrayList;
