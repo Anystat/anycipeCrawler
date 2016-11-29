@@ -15,11 +15,8 @@ import java.util.regex.Pattern;
  * Created by Lofv on 25.11.2016.
  */
 public class RecursionTestCrawler {
-    private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
-    private String regex;
-    private ParsingSay7Info pars;
-    private Pattern pattern;
-    private Matcher matcher;
+
+    private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
     private String mainUrl;
     private Set<String> pagesVisited = new HashSet<String>();
     private List<String> pagesToVisit = new LinkedList<String>();
@@ -38,11 +35,11 @@ public class RecursionTestCrawler {
 
     public void testRecursion(String url) {
 
-        pars = new ParsingSay7Info();
+        ParsingSay7Info pars = new ParsingSay7Info();
 
 
-        regex = "^" + mainUrl.toString() + "(cook/|recipe/|linkz_start).+$";
-        pattern = Pattern.compile(regex);
+        String regex = "^" + mainUrl.toString() + "(cook/|recipe/|linkz_start).+$";
+        Pattern pattern = Pattern.compile(regex);
 
         try {
             Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
@@ -56,7 +53,7 @@ public class RecursionTestCrawler {
                     Elements linksOnPage = document.select("a[href]");
 
                     for (Element link : linksOnPage) {
-                        matcher = pattern.matcher(link.absUrl("href"));
+                        Matcher matcher = pattern.matcher(link.absUrl("href"));
 
                         while (matcher.find()) {
                             pagesToVisit.add(matcher.group());

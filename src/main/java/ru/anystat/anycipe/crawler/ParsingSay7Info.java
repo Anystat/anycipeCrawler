@@ -30,7 +30,7 @@ public class ParsingSay7Info {
         ingredients(doc);  //добавляем в 1 List список ингредиентов для каждого блюда
         instruction(doc); // формируем из
 
-        PrepareReceipt.setListOfIngredients(receiptName, link, ingredients, description, instruction);
+        PrepareReceipt.createReceipt(receiptName, link, ingredients, description, instruction);
 
     }
 

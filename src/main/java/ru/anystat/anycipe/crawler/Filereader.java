@@ -10,7 +10,7 @@ import java.util.ArrayList;
 //нужен для чтения списка ингредиентов или списка сайтов из текстового файла
 public class Filereader {
 
-    static ArrayList<String> list = new ArrayList();
+    static ArrayList<String> list = new ArrayList<String>();
 
     public static ArrayList<String> read(String fileName) {
 

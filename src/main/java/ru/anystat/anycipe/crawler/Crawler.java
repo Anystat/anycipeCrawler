@@ -5,20 +5,18 @@ import java.util.*;
 
 public class Crawler {
 
-    String currentUrl;
-    CrawlerLeg leg;
     private Set<String> pagesVisited = new HashSet<String>();
     private List<String> pagesToVisit = new LinkedList<String>();
 
     public void search(ArrayList url) {
 
-        leg = new CrawlerLeg();
-
+        CrawlerLeg leg = new CrawlerLeg();
 
         for (int i = 0; i < url.size(); i++) {
             pagesToVisit.add(url.get(i).toString());
             for (int j = 0; j < pagesToVisit.size(); j++) {
 
+                String currentUrl;
                 if (pagesToVisit.isEmpty()) {
                     currentUrl = url.get(i).toString();
                 } else {
