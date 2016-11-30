@@ -22,7 +22,7 @@ public class Main {
 //       site.parsing();
 //        mongoConnector.connectionOpen();
 //          mongoConnector.connectionClose();
-//        spider.search(ru.anystat.anycipe.crawler.Filereader.read(listOfSites));
+//        spider.search(Filereader.read(listOfSites));
 
 //        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, prepareReciept.getListOfReceipts());
         mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
