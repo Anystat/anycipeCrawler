@@ -8,7 +8,8 @@ public class Crawler {
     private Set<String> pagesVisited = new HashSet<String>();
     private List<String> pagesToVisit = new LinkedList<String>();
 
-    public void search(ArrayList url) {
+
+    public void search(ArrayList<String> url) {
 
         CrawlerLeg leg = new CrawlerLeg();
 
@@ -33,12 +34,6 @@ public class Crawler {
         }
     }
 
-    /**
-     * Returns the next URL to visit (in the order that they were found). We also do a check to make
-     * sure this method doesn't return a URL that has already been visited.
-     *
-     * @return
-     */
     private String nextUrl() {
         String nextUrl;
         do {

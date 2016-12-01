@@ -1,7 +1,7 @@
 package ru.anystat.anycipe.crawler;
 
 /**
- * Created by Dred on 07.11.2016.
+ * Created by Lofv on 07.11.2016.
  */
 public class Main {
 
@@ -14,19 +14,20 @@ public class Main {
 
         MongoConnector mongoConnector = new MongoConnector();
         PrepareReceipt prepareReciept = new PrepareReceipt();
-        GetIngredientsFromTheSite site = new GetIngredientsFromTheSite();
+        GetIngredientsFromTheSite getIngredients = new GetIngredientsFromTheSite();
         Crawler spider = new Crawler();
+        Filereader filereader = new Filereader(listOfSites);
+        ParsingSay7Info parsingSay7Info=new ParsingSay7Info();
 
 
+//       getIngredients.parsing();
 
-//       site.parsing();
-//        mongoConnector.connectionOpen();
-//          mongoConnector.connectionClose();
-//        spider.search(Filereader.read(listOfSites));
+        spider.search(filereader.getList());
 
-//        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, prepareReciept.getListOfReceipts());
-        mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
-//        ru.anystat.anycipe.crawler.RecursionTestCrawler recursionTestCrawler = new ru.anystat.anycipe.crawler.RecursionTestCrawler(ru.anystat.anycipe.crawler.Filereader.read(listOfSites));
+//        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, prepareReciept.getListOfRecipes());
+        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, parsingSay7Info.getListOfRecipes());
+//        mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
+//       RecursionCrawler recursionTestCrawler = new RecursionCrawler(filereader.getList());
 
     }
 

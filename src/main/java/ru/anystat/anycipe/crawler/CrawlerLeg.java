@@ -14,21 +14,12 @@ import java.util.regex.Pattern;
 
 
 public class CrawlerLeg {
-    // We'll use a fake USER_AGENT so the web server thinks the robot is a normal web browser.
-    private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
+
+    private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
     private List<String> links = new LinkedList<String>();
     private String mainUrl;
     private int lastFlag;
     private int stepFlag = 0;
-
-
-    /**
-     * This performs all the work. It makes an HTTP request, checks the response, and then gathers
-     * up all the links on the page. Perform a searchForWord after the successful crawl
-     *
-     * @param url - The URL to visit
-     * @return whether or not the crawl was successful
-     */
 
 
     public boolean crawl(String url, int i) {
@@ -61,33 +52,28 @@ public class CrawlerLeg {
             Elements linksOnPage = document.select("a[href]");
             System.out.println("Found (" + linksOnPage.size() + ") links");
 
-
             int count = 0;
             for (Element link : linksOnPage) {
                 Matcher matcher = pattern.matcher(link.absUrl("href"));
 
                 while (matcher.find()) {
                     links.add(matcher.group());
-                    //  System.out.println(matcher.group());
                     count++;
                 }
             }
             System.out.println("Added (" + count + ") additional links");
             return true;
         } catch (IOException ioe) {
-            // We were not successful in our HTTP request
+
             return false;
         }
     }
 
-
-    public void checkFlag(int currentFlag, String url) {
-
+    private void checkFlag(int currentFlag, String url) {
 
         if (stepFlag == 0) {
             lastFlag = currentFlag;
             mainUrl = url;
-
         }
 
         if (lastFlag == currentFlag) {

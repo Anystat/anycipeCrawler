@@ -2,6 +2,7 @@ package ru.anystat.anycipe.crawler;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+import org.apache.log4j.Logger;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -13,39 +14,21 @@ import java.util.List;
  */
 
 public class MongoConnector {
-    String uri = "85.143.221.95";
+    final Logger logger = Logger.getLogger(MongoConnector.class);
+    String url = "85.143.221.95";
     MongoDatabase db;
     MongoClient mongoClient;
 
-
-    public MongoClient getMongoClient() {
-        return mongoClient;
-    }
-
-    public void setMongoClient(MongoClient mongoClient) {
-        this.mongoClient = mongoClient;
-    }
-
-
-    public void connectionOpen() {
-        mongoClient = new MongoClient(uri);
-    }
-
-    public void connectionClose() {
-        mongoClient.close();
-    }
-
-
     public void mongoConnect(String databaseName) {  //Этот конструктор для добавляния в базу только ингредиентов ( тестовый вариант) в именительном падеже
 
-        mongoClient = new MongoClient(uri);
+        mongoClient = new MongoClient(url);
         db = mongoClient.getDatabase(databaseName); // сейчас это databaseName=test,
 
         // checkCollectionsMongoDB(db);
-//        checkBasesNamesOfMongoDB(mongoClient);
+        checkBasesNamesOfMongoDB(mongoClient);
 //        deleteCollection(db, "receipts");
 //        deleteCollection(db, "ingredients");
-        checkContentOfCollectionMangoDb(db, "receipts");
+//        checkContentOfCollectionMangoDb(db, "receipts");
 //        checkContentOfCollectionMangoDb(db, "ingredients");
 
         mongoClient.close();
@@ -58,53 +41,25 @@ public class MongoConnector {
      */
 
     public void insertIngredientsIntoDBFromTheSite(String databaseName, String collectionName, List ingredients) {
-        mongoClient = new MongoClient(uri);
-        db = mongoClient.getDatabase(databaseName);
-
         List<Document> listOfIngredients = new ArrayList();
 
+        mongoClient = new MongoClient(url);
+        db = mongoClient.getDatabase(databaseName);
+
+
         for (int i = 0; i < ingredients.size(); i++) {
-            //  listOfIngredients.append(i+1+" ingredient", ingredients.get(i));
             listOfIngredients.add(new Document("name", ingredients.get(i))
                     .append("category", null));
-
         }
         db.getCollection(collectionName).insertMany(listOfIngredients);
-
-        System.out.println(ingredients.size() + " ингредиентов добавлено в базу");
+        logger.info(ingredients.size() + " ингредиентов добавлено в базу");
         mongoClient.close();
-        /*
-
-        db.getCollection(collectionName).insertOne(  //ингредиенты взятые из 1 какого-то сайта. Процесс производится в классе ru.anystat.anycipe.crawler.GetIngredientsFromTheSite
-                new Document("Список ингредиентов", new Document()
-                        .append("ingredients", asList(listOfIngredients))
-                        .append("category", null)));*/
-
 
 
     }
 
-    /*    public void insertReceiptToMongoDB(String collectionName, String receiptName, String link, ArrayList ingredients, String descriptrion, String instruction) {
-
-            Document listOfIngredients = new Document();
-
-            for (int i = 0; i < ingredients.size(); i++) {
-                listOfIngredients.append("ingredient", ingredients.get(i));
-            }
-
-            //находим коллекцию в которую нам надо что-то добавить. Если ее нет, то она создается, поэтому надо быть аккуратным с названиями
-
-            db.getCollection(collectionName).insertOne(  //receipts
-                    new Document("Рецепт", new Document()
-                            .append("receipt", receiptName)
-                            .append("link", link)
-                            .append("ingredients", asList(listOfIngredients))
-                            .append("description", descriptrion)
-                            .append("instruction", instruction)));
-
-        }*/
     public void insertReceiptToMongoDB(String databaseName, String collectionName, List<Document> receipts) {
-        mongoClient = new MongoClient(uri);
+        mongoClient = new MongoClient(url);
         db = mongoClient.getDatabase(databaseName);
         db.getCollection(collectionName).insertMany(receipts);
         mongoClient.close();
@@ -113,37 +68,35 @@ public class MongoConnector {
 
     public void checkContentOfCollectionMangoDb(MongoDatabase base, String collectionName) {
         Iterable iterable = base.getCollection(collectionName).find();
-        System.out.println("Подключение к " + collectionName);
+        logger.info("Подключение к " + collectionName);
 
         for (Object document : iterable) {
-            System.out.println("Коллекция " + collectionName + " содержит " + document);  //печатает то, что мы внесли. Это не обязательные действия
+            logger.info("Коллекция " + collectionName + " содержит " + document);
         }
-        System.out.println("Отключение ");
+        logger.info("Отключение");
     }
 
-    public void checkCollectionsMongoDB(MongoDatabase base) {  // Создаем итератор
-
-        Iterable<String> iterable = base.listCollectionNames();  // присваиваем итератору значения полученные из базы
+    public void checkCollectionsMongoDB(MongoDatabase base) {
+        Iterable<String> iterable = base.listCollectionNames();
 
         for (String collectionName : iterable) {
-            System.out.println("Ваша база данных " + "\"" + base.getName() + "\"" + " содержит Коллекцию с именем " + collectionName);  //печатаем названия коллекций, которые находятся внутри базы
+            System.out.println("Ваша база данных " + "\"" + base.getName() + "\"" + " содержит Коллекцию с именем " + collectionName);
         }
     }
 
     public void checkBasesNamesOfMongoDB(MongoClient client) {
-        System.out.println("Подключение к серверу ");
+        logger.info("Подключение к серверу");
         Iterable<String> iterable = client.listDatabaseNames();
 
         for (String baseName : iterable) {
-            System.out.println("На сервере имются следующие базы: ");
-            System.out.println("BaseName = " + baseName);  //печатаем названия баз в нашей Базе Данных
+            logger.info("На сервере имются следующие базы: ");
+            logger.info("BaseName = " + baseName);
         }
     }
 
     public void deleteCollection(MongoDatabase base, String collectionName) {
-        System.out.println("Подключение к базе " + base.getName());
+        logger.warn("Подключение к базе " + base.getName());
         base.getCollection(collectionName).deleteMany(new Document());
-        System.out.println("Содержимое коллекции " + collectionName + " удалено");
+        logger.warn("Содержимое коллекции " + collectionName + " удалено");
     }
-
 }
