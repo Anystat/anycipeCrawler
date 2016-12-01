@@ -27,7 +27,7 @@ public class CrawlerLeg {
         checkFlag(i, url);
         stepFlag++;
 
-        ParsingSay7Info pars = new ParsingSay7Info();
+//        ParsingSay7Info pars = new ParsingSay7Info();
 
         String regex = "^" + mainUrl + "(cook/|recipe/|linkz_start).+$";
         Pattern pattern = Pattern.compile(regex);
@@ -42,7 +42,8 @@ public class CrawlerLeg {
             // indicating that everything is great.
             {
                 System.out.println("\n**Visiting** Received web page at " + url);
-                pars.parsing(document);
+//                pars.parsing(document);
+                new ParsingSay7Info(document);
             }
             if (!connection.response().contentType().contains("text/html")) {
                 System.out.println("**Failure** Retrieved something other than HTML");

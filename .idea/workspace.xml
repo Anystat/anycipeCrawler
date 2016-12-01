@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44cd8173-42be-42cd-9a7b-1f2d60aa5ade" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/Content.ep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/chromedriver.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/Рецепты.ep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/ru/anystat/anycipe/crawler/PrepareReceiptTest.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionTestCrawler.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionCrawler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anycipe_crawler.iml" afterPath="$PROJECT_DIR$/anycipe_crawler.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Crawler.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Crawler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/CrawlerLeg.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/CrawlerLeg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Filereader.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Filereader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/GetIngredientsFromTheSite.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/GetIngredientsFromTheSite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/MongoConnector.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/MongoConnector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/PrepareReceipt.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/PrepareReceipt.java" />
     </list>
     <ignored path="anycipe_crawler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="78" selection-start-line="27" selection-start-column="78" selection-end-line="27" selection-end-column="78" />
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding>
                 <element signature="docComment;class#Main#0" expanded="false" />
               </folding>
@@ -55,19 +42,46 @@
       <file leaf-file-name="ParsingSay7Info.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42664418">
-              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.48735243">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
                 <element signature="docComment;class#ParsingSay7Info#0" expanded="false" />
-                <element signature="e#376#395#0" expanded="true" />
-                <element signature="e#578#586#0" expanded="true" />
-                <element signature="e#619#620#0" expanded="true" />
-                <element signature="e#668#669#0" expanded="true" />
-                <element signature="e#1407#1426#0" expanded="true" />
+                <element signature="method#ParsingSay7Info#0;class#ParsingSay7Info#0" expanded="false" />
+                <element signature="method#ParsingSay7Info#1;class#ParsingSay7Info#0" expanded="false" />
+                <element signature="method#parsing#0;class#ParsingSay7Info#0" expanded="false" />
+                <element signature="method#createRecipe#0;class#ParsingSay7Info#0" expanded="false" />
+                <element signature="e#1653#1711#0" expanded="false" />
                 <element signature="method#ingredients#0;class#ParsingSay7Info#0" expanded="false" />
                 <element signature="method#instruction#0;class#ParsingSay7Info#0" expanded="false" />
-                <element signature="e#2682#2683#0" expanded="true" />
-                <element signature="e#2723#2724#0" expanded="true" />
+                <element signature="method#setListOfRecipes#0;class#ParsingSay7Info#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecursionCrawler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionCrawler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+              <folding>
+                <element signature="docComment;class#RecursionCrawler#0" expanded="false" />
+                <element signature="method#RecursionCrawler#0;class#RecursionCrawler#0" expanded="false" />
+                <element signature="method#RecursionCrawler#1;class#RecursionCrawler#0" expanded="false" />
+                <element signature="method#nextUrl#0;class#RecursionCrawler#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CrawlerLeg.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/CrawlerLeg.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding>
+                <element signature="e#1189#1222#0" expanded="false" />
+                <element signature="method#checkFlag#0;class#CrawlerLeg#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -113,12 +127,12 @@
         <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/MongoConnector.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionTestCrawler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionCrawler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/CrawlerLeg.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/PrepareReceipt.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/GetIngredientsFromTheSite.java" />
         <option value="$PROJECT_DIR$/src/test/java/ru/anystat/anycipe/crawler/PrepareReceiptTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/CrawlerLeg.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionCrawler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java" />
       </list>
     </option>
@@ -671,7 +685,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -690,7 +704,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22121535" sideWeight="0.5121951" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32792208" sideWeight="0.49676898" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.49676898" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -717,15 +731,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java</url>
-          <line>80</line>
-          <properties class="ru.anystat.anycipe.crawler.ParsingSay7Info" method="setListOfRecipes" />
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="55" />
+      <option name="time" value="57" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -923,37 +929,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionCrawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32254463">
-          <caret line="37" column="38" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
-          <folding>
-            <element signature="docComment;class#RecursionCrawler#0" expanded="false" />
-            <element signature="method#RecursionCrawler#0;class#RecursionCrawler#0" expanded="false" />
-            <element signature="method#RecursionCrawler#1;class#RecursionCrawler#0" expanded="false" />
-            <element signature="method#Recursion#0;class#RecursionCrawler#0" expanded="false" />
-            <element signature="method#nextUrl#0;class#RecursionCrawler#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/MongoConnector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#MongoConnector#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/CrawlerLeg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6261161">
-          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
-          <folding>
-            <element signature="e#1187#1220#0" expanded="false" />
-            <element signature="method#checkFlag#0;class#CrawlerLeg#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1005,28 +986,51 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="78" selection-start-line="27" selection-start-column="78" selection-end-line="27" selection-end-column="78" />
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionCrawler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+          <folding>
+            <element signature="docComment;class#RecursionCrawler#0" expanded="false" />
+            <element signature="method#RecursionCrawler#0;class#RecursionCrawler#0" expanded="false" />
+            <element signature="method#RecursionCrawler#1;class#RecursionCrawler#0" expanded="false" />
+            <element signature="method#nextUrl#0;class#RecursionCrawler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/CrawlerLeg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="e#1189#1222#0" expanded="false" />
+            <element signature="method#checkFlag#0;class#CrawlerLeg#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42664418">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.48735243">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#ParsingSay7Info#0" expanded="false" />
-            <element signature="e#376#395#0" expanded="true" />
-            <element signature="e#578#586#0" expanded="true" />
-            <element signature="e#619#620#0" expanded="true" />
-            <element signature="e#668#669#0" expanded="true" />
-            <element signature="e#1407#1426#0" expanded="true" />
+            <element signature="method#ParsingSay7Info#0;class#ParsingSay7Info#0" expanded="false" />
+            <element signature="method#ParsingSay7Info#1;class#ParsingSay7Info#0" expanded="false" />
+            <element signature="method#parsing#0;class#ParsingSay7Info#0" expanded="false" />
+            <element signature="method#createRecipe#0;class#ParsingSay7Info#0" expanded="false" />
+            <element signature="e#1653#1711#0" expanded="false" />
             <element signature="method#ingredients#0;class#ParsingSay7Info#0" expanded="false" />
             <element signature="method#instruction#0;class#ParsingSay7Info#0" expanded="false" />
-            <element signature="e#2682#2683#0" expanded="true" />
-            <element signature="e#2723#2724#0" expanded="true" />
+            <element signature="method#setListOfRecipes#0;class#ParsingSay7Info#0" expanded="false" />
           </folding>
         </state>
       </provider>

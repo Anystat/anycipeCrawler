@@ -14,21 +14,22 @@ public class ParsingSay7Info {
 
     //    private PrepareReceipt prepareReceipt;
     public List<org.bson.Document> listOfRecipes = new ArrayList<org.bson.Document>();
+    private ArrayList<String> ingredients = new ArrayList<String>();
     private String instruction;
     private String recipeName;
     private String description;
     private String link;
 
-
-    private ArrayList<String> ingredients = new ArrayList<String>();
-
-    public ParsingSay7Info(){
-         listOfRecipes=getListOfRecipes();
+    public ParsingSay7Info() {
     }
 
-
+    public ParsingSay7Info(Document doc) {
+//         listOfRecipes=getListOfRecipes();
+        parsing(doc);
+    }
 
     public void parsing(Document doc) {
+
 //        prepareReceipt = new PrepareReceipt();
         Elements elements = doc.select(".p-summary");
         description = elements.text(); //Описание блюда
@@ -42,7 +43,7 @@ public class ParsingSay7Info {
         createRecipe(recipeName, link, ingredients, description, instruction);
     }
 
-    private void createRecipe(String receiptName, String link, List<String> ingredients, String description, String instruction) {
+    public void createRecipe(String receiptName, String link, List<String> ingredients, String description, String instruction) {
 
         List<org.bson.Document> ingredientsList = new ArrayList<org.bson.Document>();
 
@@ -64,6 +65,7 @@ public class ParsingSay7Info {
     }
 
     private void ingredients(Document document) {
+
         ingredients.clear();
         Elements elements = document.body().select(".p-ingredient");
 
@@ -78,12 +80,13 @@ public class ParsingSay7Info {
         instruction = elements.text();
     }
 
-    private void setListOfRecipes(org.bson.Document recipe) {
-        listOfRecipes.add(recipe);
-    }
-
     public List<org.bson.Document> getListOfRecipes() {
         return listOfRecipes;
+    }
+
+    public void setListOfRecipes(org.bson.Document recipe) {
+
+        listOfRecipes.add(recipe);
     }
 
 }
