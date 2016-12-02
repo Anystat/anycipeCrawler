@@ -13,7 +13,7 @@ import java.util.List;
 public class ParsingSay7Info {
 
     //    private PrepareReceipt prepareReceipt;
-    public List<org.bson.Document> listOfRecipes = new ArrayList<org.bson.Document>();
+    public List<org.bson.Document> listOfRecipes;
     private ArrayList<String> ingredients = new ArrayList<String>();
     private String instruction;
     private String recipeName;
@@ -25,6 +25,8 @@ public class ParsingSay7Info {
 
     public ParsingSay7Info(Document doc) {
 //         listOfRecipes=getListOfRecipes();
+        getListOfRecipes();
+//        System.out.println(listOfRecipes.size());
         parsing(doc);
     }
 
@@ -85,7 +87,7 @@ public class ParsingSay7Info {
     }
 
     public void setListOfRecipes(org.bson.Document recipe) {
-
+        listOfRecipes = new ArrayList<org.bson.Document>();
         listOfRecipes.add(recipe);
     }
 
