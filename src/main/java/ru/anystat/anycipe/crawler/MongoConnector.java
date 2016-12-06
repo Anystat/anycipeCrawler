@@ -14,38 +14,18 @@ import java.util.List;
  */
 
 public class MongoConnector {
-    final Logger logger = Logger.getLogger(MongoConnector.class);
-    String url = "85.143.221.95";
-    MongoDatabase db;
-    MongoClient mongoClient;
 
-    public void mongoConnect(String databaseName) {  //Этот конструктор для добавляния в базу только ингредиентов ( тестовый вариант) в именительном падеже
+    private MongoDatabase db;
+    private MongoClient mongoClient;
+    private final String URL = "85.143.221.95";
+    private final Logger logger = Logger.getLogger(MongoConnector.class);
 
-        mongoClient = new MongoClient(url);
-        db = mongoClient.getDatabase(databaseName); // сейчас это databaseName=test,
-
-        // checkCollectionsMongoDB(db);
-        checkBasesNamesOfMongoDB(mongoClient);
-//        deleteCollection(db, "receipts");
-//        deleteCollection(db, "ingredients");
-//        checkContentOfCollectionMangoDb(db, "receipts");
-//        checkContentOfCollectionMangoDb(db, "ingredients");
-
-        mongoClient.close();
-    }
-
-
-    /*
-    * @ В методе insertIngredientsIntoDBFromTheSite в качестве databaseName и collectionName
-    * надо использовать те базу и коллекцию куда занести ингредиенты взятые с 1 какого-то сайта в Именительном падеже
-     */
 
     public void insertIngredientsIntoDBFromTheSite(String databaseName, String collectionName, List ingredients) {
         List<Document> listOfIngredients = new ArrayList();
 
-        mongoClient = new MongoClient(url);
+        mongoClient = new MongoClient(URL);
         db = mongoClient.getDatabase(databaseName);
-
 
         for (int i = 0; i < ingredients.size(); i++) {
             listOfIngredients.add(new Document("name", ingredients.get(i))
@@ -54,49 +34,58 @@ public class MongoConnector {
         db.getCollection(collectionName).insertMany(listOfIngredients);
         logger.info(ingredients.size() + " ингредиентов добавлено в базу");
         mongoClient.close();
-
-
     }
 
     public void insertReceiptToMongoDB(String databaseName, String collectionName, List<Document> receipts) {
-        mongoClient = new MongoClient(url);
+        mongoClient = new MongoClient(URL);
         db = mongoClient.getDatabase(databaseName);
         db.getCollection(collectionName).insertMany(receipts);
         mongoClient.close();
-
     }
 
-    public void checkContentOfCollectionMangoDb(MongoDatabase base, String collectionName) {
-        Iterable iterable = base.getCollection(collectionName).find();
+    public void checkContentOfCollectionMangoDb(String databaseName, String collectionName) {
+        mongoClient = new MongoClient(URL);
+        db = mongoClient.getDatabase(databaseName);
+        Iterable iterable = db.getCollection(collectionName).find();
         logger.info("Подключение к " + collectionName);
 
         for (Object document : iterable) {
             logger.info("Коллекция " + collectionName + " содержит " + document);
         }
         logger.info("Отключение");
+        mongoClient.close();
     }
 
-    public void checkCollectionsMongoDB(MongoDatabase base) {
-        Iterable<String> iterable = base.listCollectionNames();
+    public void checkCollectionsMongoDB(String databaseName) {
+        mongoClient = new MongoClient(URL);
+        db = mongoClient.getDatabase(databaseName);
+        Iterable<String> iterable = db.listCollectionNames();
 
         for (String collectionName : iterable) {
-            System.out.println("Ваша база данных " + "\"" + base.getName() + "\"" + " содержит Коллекцию с именем " + collectionName);
+            logger.info("Ваша база данных " + "\"" + db.getName() + "\"" + " содержит Коллекцию с именем " + collectionName);
         }
+        mongoClient.close();
     }
 
-    public void checkBasesNamesOfMongoDB(MongoClient client) {
+    public void checkBasesNamesOfMongoDB() {
+        mongoClient = new MongoClient(URL);
+
         logger.info("Подключение к серверу");
-        Iterable<String> iterable = client.listDatabaseNames();
+        Iterable<String> iterable = mongoClient.listDatabaseNames();
 
         for (String baseName : iterable) {
             logger.info("На сервере имются следующие базы: ");
             logger.info("BaseName = " + baseName);
         }
+        mongoClient.close();
     }
 
-    public void deleteCollection(MongoDatabase base, String collectionName) {
-        logger.warn("Подключение к базе " + base.getName());
-        base.getCollection(collectionName).deleteMany(new Document());
+    public void deleteCollection(String databaseName, String collectionName) {
+        mongoClient = new MongoClient(URL);
+        db = mongoClient.getDatabase(databaseName);
+        logger.warn("Подключение к базе " + db.getName());
+        db.getCollection(collectionName).deleteMany(new Document());
         logger.warn("Содержимое коллекции " + collectionName + " удалено");
+        mongoClient.close();
     }
 }

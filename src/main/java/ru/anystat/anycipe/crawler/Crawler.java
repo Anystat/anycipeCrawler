@@ -1,5 +1,7 @@
 package ru.anystat.anycipe.crawler;
 
+import org.apache.log4j.Logger;
+
 import java.util.*;
 
 
@@ -7,10 +9,11 @@ public class Crawler {
 
     private Set<String> pagesVisited = new HashSet<String>();
     private List<String> pagesToVisit = new LinkedList<String>();
-
+    private final Logger logger = Logger.getLogger(Crawler.class);
 
     public void search(ArrayList<String> url) {
 
+        ParsingSay7Info pars = new ParsingSay7Info();
         CrawlerLeg leg = new CrawlerLeg();
 
         for (int i = 0; i < url.size(); i++) {
@@ -21,17 +24,16 @@ public class Crawler {
                 if (pagesToVisit.isEmpty()) {
                     currentUrl = url.get(i).toString();
                 } else {
-                    currentUrl = nextUrl();
+                  currentUrl = nextUrl();
                 }
-
-                leg.crawl(currentUrl,i); // Lots of stuff happening here. Look at the crawl method in ru.anystat.anycipe.crawler.CrawlerLeg
+                leg.crawl(currentUrl, i);
                 pagesToVisit.addAll(leg.getLinks());
 
-                System.out.println("\n**Done** Visited " + pagesVisited.size() + " web page(s)");
-                System.out.println("Pages left: " + pagesToVisit.size());
-
+                logger.info("\n**Done** Visited " + pagesVisited.size() + " web page(s)");
+                logger.info("Pages left: " + pagesToVisit.size());
             }
         }
+        pars.parsing(leg.getPagesWithRecipes());
     }
 
     private String nextUrl() {
@@ -42,6 +44,4 @@ public class Crawler {
         pagesVisited.add(nextUrl);
         return nextUrl;
     }
-
-
 }

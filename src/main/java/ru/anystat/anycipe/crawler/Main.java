@@ -7,27 +7,25 @@ public class Main {
 
 
     public static void main(String[] args) {
-        String listOfSites = "src\\main\\resources\\ListOfSites.txt";
-        String listOfIngredients = "src\\main\\resources\\ListOfIngredients.txt";
+        final String SITES = "src\\main\\resources\\ListOfSites.txt";
+        final String INGREDIENTS = "src\\main\\resources\\ListOfIngredients.txt";
         final String collectionName = "receipts";
         final String baseName = "anycipe_crawler";
 
         MongoConnector mongoConnector = new MongoConnector();
-        PrepareReceipt prepareReciept = new PrepareReceipt();
         GetIngredientsFromTheSite getIngredients = new GetIngredientsFromTheSite();
         Crawler spider = new Crawler();
-        Filereader filereader = new Filereader(listOfSites);
-        ParsingSay7Info parsingSay7Info=new ParsingSay7Info();
+        Filereader filereader = new Filereader(SITES);
+        ParsingSay7Info parsingSay7Info = new ParsingSay7Info();
 
 
+//       RecursionCrawler recursionTestCrawler = new RecursionCrawler(filereader.getList());
 //       getIngredients.parsing();
+
 
         spider.search(filereader.getList());
 
-//        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, prepareReciept.getListOfRecipes());
-        mongoConnector.insertReceiptToMongoDB(baseName, collectionName, parsingSay7Info.getListOfRecipes());
-//        mongoConnector.mongoConnect("anycipe_crawler"); // для удаления содержимого коллекции
-//       RecursionCrawler recursionTestCrawler = new RecursionCrawler(filereader.getList());
+
 
     }
 

@@ -17,14 +17,12 @@ import java.util.regex.Pattern;
  */
 public class RecursionCrawler {
 
-    final Logger logger = Logger.getLogger(RecursionCrawler.class);
-    private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
     private String mainUrl;
+    private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
     private Set<String> pagesVisited = new HashSet<String>();
     private List<String> pagesToVisit = new LinkedList<String>();
-
-    RecursionCrawler() {
-    }
+    private List<Document> pagesWithRecipes = new ArrayList<Document>();
+    private final Logger logger = Logger.getLogger(RecursionCrawler.class);
 
     RecursionCrawler(ArrayList<String> urls) {
 
@@ -48,7 +46,8 @@ public class RecursionCrawler {
 
             if ((connection.response().statusCode() == 200) && (connection.response().contentType().contains("text/html"))) {
                 if (url.contains("recipe/")) {
-                    pars.parsing(document);
+                    pagesWithRecipes.add(document);
+//                    pars.parsing(document);
                 } else {
                     Elements linksOnPage = document.select("a[href]");
 
@@ -67,12 +66,12 @@ public class RecursionCrawler {
             if (nextUrl != null) {
                 Recursion(nextUrl);
             } else {
-                logger.warn("Конец кина, ссылки кончились");
+                logger.warn("None links left");
             }
         } catch (IOException ioe) {
             logger.error("We were not successful in our HTTP request");
         }
-
+        pars.parsing(getPagesWithRecipes());
     }
 
     private String nextUrl() {
@@ -89,4 +88,7 @@ public class RecursionCrawler {
         return nextUrl;
     }
 
+    private List<Document> getPagesWithRecipes() {
+        return pagesWithRecipes;
+    }
 }

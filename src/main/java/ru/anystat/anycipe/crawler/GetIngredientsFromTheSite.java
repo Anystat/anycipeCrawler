@@ -15,22 +15,20 @@ import java.util.List;
  */
 public class GetIngredientsFromTheSite {
 
-    private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
+    private final String baseName = "anycipe_crawler";
+    private final String collectionName = "ingredients";
     private final String SITE = "http://www.bazareceptov.ru/ingredients.php?page=";
+    private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
     private List fullListOfIngredients = new ArrayList();
     private MongoConnector mongoConnector = new MongoConnector();
-    private String baseName = "anycipe_crawler";
-    private String collectionName = "ingredients";
 
 
-    public void parsing() {
+
+    public void list() {
 
         Document doc = null;
         for (int i = 1; i < 9; i++) {
 
-            /**
-             * @connection перебираем все страницы с ингредиентами на этом сайте
-             */
             Connection connection = Jsoup.connect(SITE + i).userAgent(USER_AGENT);
             try {
                 doc = connection.get();
@@ -38,13 +36,10 @@ public class GetIngredientsFromTheSite {
                 e.printStackTrace();
             }
 
-            /**
-             * @table отбираем 7-ую таблицу с классом txt и затем отбираем по тегу tr/td нужные нам элементы
-             */
             Element table = doc.body().getElementsByClass("txt").get(6);
             Elements rows = table.select("tr");
 
-            for (int k = 1; k < rows.size(); k++) { //first row is the col names so skip it.
+            for (int k = 1; k < rows.size(); k++) {
                 Element row = rows.get(k);
                 Elements cols = row.select("td");
 
@@ -52,10 +47,8 @@ public class GetIngredientsFromTheSite {
                     fullListOfIngredients.add(cols.get(j).text());
                 }
             }
-
         }
         mongoConnector.insertIngredientsIntoDBFromTheSite(baseName, collectionName, fullListOfIngredients);
     }
-
 
 }

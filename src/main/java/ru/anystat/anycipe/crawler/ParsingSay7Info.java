@@ -5,6 +5,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -12,58 +13,46 @@ import java.util.List;
  */
 public class ParsingSay7Info {
 
-    //    private PrepareReceipt prepareReceipt;
-    public List<org.bson.Document> listOfRecipes;
-    private ArrayList<String> ingredients = new ArrayList<String>();
-    private String instruction;
-    private String recipeName;
-    private String description;
     private String link;
+    private String recipeName;
+    private String instruction;
+    private String description;
+    private LinkedList<String> ingredients = new LinkedList<String>();
+    private List<org.bson.Document> listOfRecipes = new LinkedList<org.bson.Document>();
 
-    public ParsingSay7Info() {
+
+    public void parsing(List<Document> document) {
+
+        for (int i = 0; i < document.size(); i++) {
+          Document doc= document.get(i);
+
+            Elements elements = doc.select(".p-summary");
+            description = elements.text();
+            recipeName = doc.title();
+            link = doc.baseUri();
+
+            ingredients(doc);
+            instruction(doc);
+
+            createRecipe(recipeName, link, ingredients, description, instruction);
+        }
     }
 
-    public ParsingSay7Info(Document doc) {
-//         listOfRecipes=getListOfRecipes();
-        getListOfRecipes();
-//        System.out.println(listOfRecipes.size());
-        parsing(doc);
-    }
-
-    public void parsing(Document doc) {
-
-//        prepareReceipt = new PrepareReceipt();
-        Elements elements = doc.select(".p-summary");
-        description = elements.text(); //Описание блюда
-        recipeName = doc.title();  // Название блюда
-        link = doc.baseUri();   //ссылка на рецепт
-
-        ingredients(doc);
-        instruction(doc);
-
-//        prepareReceipt.createRecipe(recipeName, link, ingredients, description, instruction);
-        createRecipe(recipeName, link, ingredients, description, instruction);
-    }
-
-    public void createRecipe(String receiptName, String link, List<String> ingredients, String description, String instruction) {
+    private void createRecipe(String receiptName, String link, List<String> ingredients, String description, String instruction) {
 
         List<org.bson.Document> ingredientsList = new ArrayList<org.bson.Document>();
 
         for (int i = 0; i < ingredients.size(); i++) {
             ingredientsList.add(new org.bson.Document("name", ingredients.get(i)));
-            //listOfIngredients.append(i+1+"name",ingredients.get(i));
-            // listOfIngredients.append(i + 1 + " ingredient", ingredients.get(i));
-            // listOfIngredients.put(i+" ingredient", ingredients.get(i));
-        }
+                  }
 
         org.bson.Document recipe = new org.bson.Document("recipe", receiptName)
-                //.append("ingredients", asList(listOfIngredients))
                 .append("link", link)
                 .append("ingredients", ingredientsList)
                 .append("description", description)
                 .append("instruction", instruction);
 
-        setListOfRecipes(recipe);
+        listOfRecipes.add(recipe);
     }
 
     private void ingredients(Document document) {
@@ -84,11 +73,6 @@ public class ParsingSay7Info {
 
     public List<org.bson.Document> getListOfRecipes() {
         return listOfRecipes;
-    }
-
-    public void setListOfRecipes(org.bson.Document recipe) {
-        listOfRecipes = new ArrayList<org.bson.Document>();
-        listOfRecipes.add(recipe);
     }
 
 }

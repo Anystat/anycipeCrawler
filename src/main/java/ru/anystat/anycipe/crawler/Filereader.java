@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 public class Filereader {
 
-    ArrayList<String> list = new ArrayList<String>();
+    private ArrayList<String> list = new ArrayList<String>();
 
     public Filereader(String fileName) {
         setList(fileName);
-           }
+    }
 
     private void exists(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
@@ -38,7 +38,6 @@ public class Filereader {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "windows-1251"));
             String inputLine;
