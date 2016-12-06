@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44cd8173-42be-42cd-9a7b-1f2d60aa5ade" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log4j-application.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/PrepareReceipt.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Crawler.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Crawler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/CrawlerLeg.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/CrawlerLeg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Filereader.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Filereader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/GetIngredientsFromTheSite.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/GetIngredientsFromTheSite.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/MongoConnector.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/MongoConnector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionCrawler.java" afterPath="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionCrawler.java" />
     </list>
     <ignored path="anycipe_crawler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,13 +25,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58816963">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="docComment;class#Main#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParsingSay7Info.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.094866075">
+              <caret line="13" column="16" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="28" />
+              <folding>
+                <element signature="docComment;class#ParsingSay7Info#0" expanded="false" />
+                <element signature="method#createRecipe#0;class#ParsingSay7Info#0" expanded="false" />
+                <element signature="method#ingredients#0;class#ParsingSay7Info#0" expanded="false" />
+                <element signature="method#instruction#0;class#ParsingSay7Info#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -86,7 +91,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionTestCrawler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/PrepareReceipt.java" />
         <option value="$PROJECT_DIR$/src/test/java/ru/anystat/anycipe/crawler/PrepareReceiptTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Filereader.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Crawler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/CrawlerLeg.java" />
@@ -95,6 +99,7 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionCrawler.java" />
         <option value="$PROJECT_DIR$/Readme.md" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java" />
       </list>
     </option>
   </component>
@@ -1057,21 +1062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.094866075">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="28" />
-          <folding>
-            <element signature="docComment;class#ParsingSay7Info#0" expanded="false" />
-            <element signature="method#createRecipe#0;class#ParsingSay7Info#0" expanded="false" />
-            <element signature="method#ingredients#0;class#ParsingSay7Info#0" expanded="false" />
-            <element signature="method#instruction#0;class#ParsingSay7Info#0" expanded="false" />
-            <element signature="e#2233#2234#0" expanded="true" />
-            <element signature="e#2269#2270#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/RecursionCrawler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.55022323">
@@ -1099,10 +1089,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58816963">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#Main#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/anystat/anycipe/crawler/ParsingSay7Info.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.094866075">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="28" />
+          <folding>
+            <element signature="docComment;class#ParsingSay7Info#0" expanded="false" />
+            <element signature="method#createRecipe#0;class#ParsingSay7Info#0" expanded="false" />
+            <element signature="method#ingredients#0;class#ParsingSay7Info#0" expanded="false" />
+            <element signature="method#instruction#0;class#ParsingSay7Info#0" expanded="false" />
           </folding>
         </state>
       </provider>

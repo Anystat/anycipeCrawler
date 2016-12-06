@@ -19,10 +19,6 @@ public class Main {
         ParsingSay7Info parsingSay7Info = new ParsingSay7Info();
 
 
-//       RecursionCrawler recursionTestCrawler = new RecursionCrawler(filereader.getList());
-//       getIngredients.parsing();
-
-
         spider.search(filereader.getList());
 
 
