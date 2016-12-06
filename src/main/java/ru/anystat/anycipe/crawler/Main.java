@@ -16,14 +16,8 @@ public class Main {
         GetIngredientsFromTheSite getIngredients = new GetIngredientsFromTheSite();
         Crawler spider = new Crawler();
         Filereader filereader = new Filereader(SITES);
-        ParsingSay7Info parsingSay7Info = new ParsingSay7Info();
-
-
+        
+        
         spider.search(filereader.getList());
-
-
-
     }
-
-
 }
