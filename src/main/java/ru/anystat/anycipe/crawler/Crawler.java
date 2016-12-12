@@ -18,8 +18,8 @@ public class Crawler {
 
         for (int i = 0; i < url.size(); i++) {
             pagesToVisit.add(url.get(i).toString());
-            for (int j = 0; j < pagesToVisit.size(); j++) {
-
+          //  for (int j = 0; j < pagesToVisit.size(); j++) {
+            for (int j = 0; j < 5; j++) {
                 String currentUrl;
                 if (pagesToVisit.isEmpty()) {
                     currentUrl = url.get(i).toString();

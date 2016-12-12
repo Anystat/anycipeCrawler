@@ -1,5 +1,8 @@
 package ru.anystat.anycipe.crawler;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by Lofv on 07.11.2016.
  */
@@ -19,5 +22,6 @@ public class Main {
         
         
         spider.search(filereader.getList());
+
     }
 }
