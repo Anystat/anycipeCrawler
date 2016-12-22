@@ -19,8 +19,6 @@ public class Main {
         GetIngredientsFromTheSite getIngredients = new GetIngredientsFromTheSite();
         Crawler spider = new Crawler();
         Filereader filereader = new Filereader(SITES);
-        
-        
         spider.search(filereader.getList());
 
     }
