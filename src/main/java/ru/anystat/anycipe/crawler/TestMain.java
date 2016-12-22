@@ -19,8 +19,10 @@ public class TestMain {
 
         Matcher matcher;
         Pattern pattern;
+//        String regex = "(^[½|¼|¾]?\\d{0,5}[\\u2013\\.,/-]?\\d{0,5}]?)?(\\u00A0|\\u0020)?((г.|г|кг.|кг|мл.|мл|л.|литр|л|ч.л.|ч.л|ст.л.|ст.л)?(\\u00A0|\\u0020))?(.*$)";
+        String regex = "(^[½|¼|¾]?\\d{0,5}[\\u2013\\.,/-]?\\d{0,5}]?)?(\\u00A0|\\u0020)?((г.|г|кг.|кг|мл.|мл|л.|л|литр|ч.л.|ч.л|ст.л.|ст.л)(\\u00A0|\\u0020))?(.*$)";
 
-        String text = "200-250 г листов лазаньи";
+//        String text = "растительное масло";
 
 
         Document doc;
@@ -29,26 +31,30 @@ public class TestMain {
             Connection connection = Jsoup.connect(SITE).userAgent(USER_AGENT);
             doc = connection.get();
 
-//            Elements elements = doc.select(".p-summary");
-
             Elements ingred = doc.body().select(".p-ingredient");
-            System.out.println('\u2013');
-            System.out.println('\u00bd');
-            //–
+
             for (Element elem : ingred) {
-                //System.out.println(elem.text());
 
-               // pattern = Pattern.compile("(^[½|¼|¾]?\\d{0,5}[\\.,/-]?\\d{0,5}]?)?(\\u00A0|\\u0020)?(г.|г|кг.|кг|мл.|мл|л.|л|ч.л.|ч.л|ст.л.|ст.л)?(\\u00A0|\\u0020)(.*$)");  // это в matcher.split
-                pattern=Pattern.compile("^\\d{0,3}[\\.-\\u2013]?");
-
+                pattern = Pattern.compile(regex);
                 matcher = pattern.matcher(elem.text());
 
                 while (matcher.find()) {
 
-                    for (int i = 0; i < matcher.groupCount() + 1; i++) {
+                    for (int i = 1; i < matcher.groupCount() + 1; i++) {
 
                         String match = matcher.group(i);
-                        System.out.println("i = " + i + "  " + match);
+                        if (matcher.group(i) != null) {
+                            System.out.println((matcher.group(i).equals("\u00A0")) ||(matcher.group(i).equals("\u0020"))||(matcher.group(i).equals("")));
+                            System.out.println(matcher.group(i).equals("\u00A0"));
+                            System.out.println(matcher.group(i).equals("\u0020"));
+                            System.out.println(matcher.group(i).equals(""));
+                            System.out.println(!((matcher.group(i).equals("\u00A0"))||(matcher.group(i).equals("\u0020"))|(matcher.group(i).equals(""))));
+                            if (!((matcher.group(i).equals("\u00A0"))||(matcher.group(i).equals("\u0020"))|(matcher.group(i).equals("")))) {
+                        System.out.println(matcher.group(i));
+                            } else {
+                                System.out.println("i = " + i + "  " + matcher.group(i));
+                            }
+                        }
                     }
                 }
             }

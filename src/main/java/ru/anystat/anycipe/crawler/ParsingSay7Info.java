@@ -1,5 +1,6 @@
 package ru.anystat.anycipe.crawler;
 
+import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -15,13 +16,13 @@ import java.util.regex.Pattern;
  */
 public class ParsingSay7Info {
 
+    private final Logger logger = Logger.getLogger(MongoConnector.class);
     private String link;
     private String recipeName;
     private String instruction;
     private String description;
-    private LinkedList<String> ingredients = new LinkedList<String>();
+    private LinkedList<org.bson.Document> ingredients = new LinkedList<org.bson.Document>();
     private List<org.bson.Document> listOfRecipes = new LinkedList<org.bson.Document>();
-
 
     public void parsing(List<Document> document) {
 
@@ -40,12 +41,12 @@ public class ParsingSay7Info {
         }
     }
 
-    private void createRecipe(String receiptName, String link, List<String> ingredients, String description, String instruction) {
+    private void createRecipe(String receiptName, String link, List<org.bson.Document> ingredients, String description, String instruction) {
 
         List<org.bson.Document> ingredientsList = new ArrayList<org.bson.Document>();
 
         for (int i = 0; i < ingredients.size(); i++) {
-            ingredientsList.add(new org.bson.Document("name", ingredients.get(i)));
+            ingredientsList.add(new org.bson.Document("ingredient", ingredients.get(i)));
         }
 
         org.bson.Document recipe = new org.bson.Document("recipe", receiptName)
@@ -55,13 +56,22 @@ public class ParsingSay7Info {
                 .append("instruction", instruction);
 
         listOfRecipes.add(recipe);
+
     }
 
     private void ingredients(Document document) {
+
         Matcher matcher;
         Pattern pattern;
-        String regex = "(^[½|¼|¾]?\\d{0,5}[\\u2013\\.,/-]?\\d{0,5}]?)?(\\u00A0|\\u0020)?(г.|г|кг.|кг|мл.|мл|л.|л|ч.л.|ч.л|ст.л.|ст.л)?(\\u00A0|\\u0020)(.*$)";
+        String value;
+        String unit;
+        String name;
+        String space = "\u0020";
+        String nbsp = "\u00A0";
+        String regex = "(^[½|¼|¾]?\\d{0,5}[\\u2013\\.,/-]?\\d{0,5}]?)?(\\u00A0|\\u0020)?((г.|г|кг.|кг|мл.|мл|л.|л|ч.л.|ч.л|ст.л.|ст.л|головка|литр|стакан)(\\u00A0|\\u0020))?(.*$)";
+
         ingredients.clear();
+
         Elements elements = document.body().select(".p-ingredient");
 
         for (Element element : elements) {
@@ -69,24 +79,31 @@ public class ParsingSay7Info {
             pattern = Pattern.compile(regex);
             matcher = pattern.matcher(element.text());
 
+            if (matcher.find()) {
 
-            while (matcher.find()) {
+                name = null;
+                value = null;
+                unit = null;
 
+                for (int i = 1; i < matcher.groupCount() + 1; i++) {
 
-                String space = "\u0020";
-                String nbsp = "\u00A0";
-                char spaces='\u0020';
-                for (int i = 0; i < matcher.groupCount(); i++) {
-                    String matches=matcher.group(i);
-                    System.out.println("i = " + i + ":  " + matcher.group(i));
-                    System.out.println(matches==space);
-                    System.out.println(matches==nbsp);
-                   /* String match=matcher.group(i);
-                    if ((matcher.group(i) != null) && (!(matcher.group(i).equals("\\u0020"))) &&(!(matcher.group(i).equals("\\u00A0")))) {
-                        System.out.println("i = " + i + ":  " + matcher.group(i));
-                    }*/
+                    if (matcher.group(i) != null) {
+                        if (!((matcher.group(i).equals(nbsp)) || (matcher.group(i).equals(space)) || (matcher.group(i).equals("")))) {
+                            if (i == 1) {
+                                value = matcher.group(i);
+                            }
+                            if (i == 3) {
+                                unit = matcher.group(i);
+                            }
+                            if (i == 6) {
+                                name = matcher.group(i);
+                            }
+                        }
+                    }
                 }
-                //ingredients.add(element.text());
+                ingredients.add(new org.bson.Document("value", value)
+                        .append("unit", unit)
+                        .append("name", name));
             }
         }
     }
@@ -102,20 +119,3 @@ public class ParsingSay7Info {
     }
 
 }
-
- /*     if ((matcher.group(i).equals("\\u0020"))){
-                        System.out.println("i = " + i + ":  " + matcher.group(i));
-                    }*/
-//  System.out.println("i = " + i + ":  " + matcher.group(i));
-
-                   /* if (!(matcher.group(i) == null)&&(matcher.group(i).equals('\u0020'))&&(matcher.group(i).equals('\u00A0'))) {
-                    }*/ /* if (matcher.group(i).equals("\u0020")) {
-
-                    } else if (matcher.group(i).equals("\u00A0")) {
-                        String spaces = matcher.group(i);
-                        //   System.out.println("i = " + i + " = &nbsp" );
-                    } else*/
-//System.out.println(matcher.group(i)=="\\u00A0");
-                   /* if (!(matcher.group(i) == null)){
-                        System.out.println("i+1 = " + i + ":  " + matcher.group(i));
-                    }*/
