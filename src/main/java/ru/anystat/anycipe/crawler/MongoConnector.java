@@ -15,15 +15,12 @@ import java.util.List;
 
 public class MongoConnector {
 
+    private final Logger logger = Logger.getLogger(MongoConnector.class);
     private MongoDatabase db;
     private MongoClient mongoClient;
-    private final String URL = "85.143.221.95";
-    private final Logger logger = Logger.getLogger(MongoConnector.class);
 
-
-    public void insertIngredientsIntoDBFromTheSite(String databaseName, String collectionName, List ingredients) {
+    public void insertIngredientsIntoDBFromTheSite(String URL, String databaseName, String collectionName, List ingredients) {
         List<Document> listOfIngredients = new ArrayList();
-
         mongoClient = new MongoClient(URL);
         db = mongoClient.getDatabase(databaseName);
 
@@ -36,14 +33,14 @@ public class MongoConnector {
         mongoClient.close();
     }
 
-    public void insertReceiptToMongoDB(String databaseName, String collectionName, List<Document> receipts) {
+    public void insertReceiptToMongoDB(String URL, String databaseName, String collectionName, List<Document> receipts) {
         mongoClient = new MongoClient(URL);
         db = mongoClient.getDatabase(databaseName);
         db.getCollection(collectionName).insertMany(receipts);
         mongoClient.close();
     }
 
-    public void checkContentOfCollectionMangoDb(String databaseName, String collectionName) {
+    public void checkContentOfCollectionMangoDb(String URL, String databaseName, String collectionName) {
         mongoClient = new MongoClient(URL);
         db = mongoClient.getDatabase(databaseName);
         Iterable iterable = db.getCollection(collectionName).find();
@@ -56,7 +53,7 @@ public class MongoConnector {
         mongoClient.close();
     }
 
-    public void checkCollectionsMongoDB(String databaseName) {
+    public void checkCollectionsMongoDB(String URL, String databaseName) {
         mongoClient = new MongoClient(URL);
         db = mongoClient.getDatabase(databaseName);
         Iterable<String> iterable = db.listCollectionNames();
@@ -67,7 +64,7 @@ public class MongoConnector {
         mongoClient.close();
     }
 
-    public void checkBasesNamesOfMongoDB() {
+    public void checkBasesNamesOfMongoDB(String URL) {
         mongoClient = new MongoClient(URL);
 
         logger.info("Подключение к серверу");
@@ -80,7 +77,7 @@ public class MongoConnector {
         mongoClient.close();
     }
 
-    public void deleteCollection(String databaseName, String collectionName) {
+    public void deleteCollection(String URL, String databaseName, String collectionName) {
         mongoClient = new MongoClient(URL);
         db = mongoClient.getDatabase(databaseName);
         logger.warn("Подключение к базе " + db.getName());

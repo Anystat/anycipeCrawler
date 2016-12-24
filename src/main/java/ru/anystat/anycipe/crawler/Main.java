@@ -9,15 +9,18 @@ public class Main {
     public static void main(String[] args) {
         final String SITES = "src\\main\\resources\\ListOfSites.txt";
         final String INGREDIENTS = "src\\main\\resources\\ListOfIngredients.txt";
-        final String collectionName = "receipts";
-        final String baseName = "anycipe_crawler";
+        final String collectionName = "null";
+        final String baseName = "null";
+        final String URL = "null";
 
         MongoConnector mongoConnector = new MongoConnector();
         GetIngredientsFromTheSite getIngredients = new GetIngredientsFromTheSite();
-        Crawler spider = new Crawler();
+        ParsingSay7Info pars=new ParsingSay7Info();
+        Crawler spider = new Crawler(pars);
+
         Filereader filereader = new Filereader(SITES);
-        
-        
         spider.search(filereader.getList());
+
+        mongoConnector.insertReceiptToMongoDB(URL,baseName,collectionName,pars.getListOfRecipes());
     }
 }

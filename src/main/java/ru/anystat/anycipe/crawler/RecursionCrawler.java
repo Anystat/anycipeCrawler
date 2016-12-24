@@ -17,12 +17,12 @@ import java.util.regex.Pattern;
  */
 public class RecursionCrawler {
 
-    private String mainUrl;
     private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
+    private final Logger logger = Logger.getLogger(RecursionCrawler.class);
+    private String mainUrl;
     private Set<String> pagesVisited = new HashSet<String>();
     private List<String> pagesToVisit = new LinkedList<String>();
     private List<Document> pagesWithRecipes = new ArrayList<Document>();
-    private final Logger logger = Logger.getLogger(RecursionCrawler.class);
 
     RecursionCrawler(ArrayList<String> urls) {
 
