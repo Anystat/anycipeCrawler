@@ -7,24 +7,27 @@ import java.util.*;
 
 public class Crawler {
 
+    private final Logger logger = Logger.getLogger(Crawler.class);
     private Set<String> pagesVisited = new HashSet<String>();
     private List<String> pagesToVisit = new LinkedList<String>();
-    private final Logger logger = Logger.getLogger(Crawler.class);
+    private ParsingSay7Info pars;
+
+    Crawler(ParsingSay7Info pars) {
+        this.pars = pars;
+    }
 
     public void search(ArrayList<String> url) {
 
-        ParsingSay7Info pars = new ParsingSay7Info();
         CrawlerLeg leg = new CrawlerLeg();
 
         for (int i = 0; i < url.size(); i++) {
             pagesToVisit.add(url.get(i).toString());
             for (int j = 0; j < pagesToVisit.size(); j++) {
-
                 String currentUrl;
                 if (pagesToVisit.isEmpty()) {
                     currentUrl = url.get(i).toString();
                 } else {
-                  currentUrl = nextUrl();
+                    currentUrl = nextUrl();
                 }
                 leg.crawl(currentUrl, i);
                 pagesToVisit.addAll(leg.getLinks());

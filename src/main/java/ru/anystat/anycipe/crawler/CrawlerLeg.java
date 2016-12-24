@@ -14,14 +14,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CrawlerLeg {
+    private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
+    private final Logger logger = Logger.getLogger(CrawlerLeg.class);
     private int lastFlag;
     private int stepFlag = 0;
     private String mainUrl;
-    private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
     private List<String> links = new LinkedList<String>();
     private List<Document> pagesWithRecipes = new LinkedList<Document>();
-    private final Logger logger = Logger.getLogger(CrawlerLeg.class);
-
 
     public boolean crawl(String url, int i) {
 
