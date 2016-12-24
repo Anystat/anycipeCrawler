@@ -1,8 +1,5 @@
 package ru.anystat.anycipe.crawler;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * Created by Lofv on 07.11.2016.
  */
@@ -14,12 +11,16 @@ public class Main {
         final String INGREDIENTS = "src\\main\\resources\\ListOfIngredients.txt";
         final String collectionName = "receipts";
         final String baseName = "anycipe_crawler";
+        final String URL = "85.143.221.95";
 
         MongoConnector mongoConnector = new MongoConnector();
         GetIngredientsFromTheSite getIngredients = new GetIngredientsFromTheSite();
-        Crawler spider = new Crawler();
+        ParsingSay7Info pars=new ParsingSay7Info();
+        Crawler spider = new Crawler(pars);
+
         Filereader filereader = new Filereader(SITES);
         spider.search(filereader.getList());
 
+        mongoConnector.insertReceiptToMongoDB(URL,baseName,collectionName,pars.getListOfRecipes());
     }
 }

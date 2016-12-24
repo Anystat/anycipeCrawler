@@ -1,6 +1,5 @@
 package ru.anystat.anycipe.crawler;
 
-import org.apache.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -16,13 +15,12 @@ import java.util.regex.Pattern;
  */
 public class ParsingSay7Info {
 
-    private final Logger logger = Logger.getLogger(MongoConnector.class);
     private String link;
     private String recipeName;
     private String instruction;
     private String description;
     private LinkedList<org.bson.Document> ingredients = new LinkedList<org.bson.Document>();
-    private List<org.bson.Document> listOfRecipes = new LinkedList<org.bson.Document>();
+    private List<org.bson.Document> listOfRecipes = new ArrayList();
 
     public void parsing(List<Document> document) {
 
@@ -68,7 +66,12 @@ public class ParsingSay7Info {
         String name;
         String space = "\u0020";
         String nbsp = "\u00A0";
-        String regex = "(^[½|¼|¾]?\\d{0,5}[\\u2013\\.,/-]?\\d{0,5}]?)?(\\u00A0|\\u0020)?((г.|г|кг.|кг|мл.|мл|л.|л|ч.л.|ч.л|ст.л.|ст.л|головка|литр|стакан)(\\u00A0|\\u0020))?(.*$)";
+        String regExpValue = "(^[½|¼|¾]?\\d{0,5}[\u2013\\.,/-]?\\d{0,5}]?)?";
+        String regExpUnit = "(г.|г|кг.|кг|мл.|мл|л.|л|ч.л.|ч.л|ст.л.|ст.л|головка|литр|стакан)";
+        String regExpSpaces = space + "|" + nbsp;
+        String regExpName = "(.*$)";
+        String regex = regExpValue + "(" + regExpSpaces + ")?" + "(" + regExpUnit + "(" + regExpSpaces + "))?" + regExpName;
+
 
         ingredients.clear();
 
