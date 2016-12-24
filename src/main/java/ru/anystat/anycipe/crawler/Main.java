@@ -9,9 +9,9 @@ public class Main {
     public static void main(String[] args) {
         final String SITES = "src\\main\\resources\\ListOfSites.txt";
         final String INGREDIENTS = "src\\main\\resources\\ListOfIngredients.txt";
-        final String collectionName = "receipts";
-        final String baseName = "anycipe_crawler";
-        final String URL = "85.143.221.95";
+        final String collectionName = "null";
+        final String baseName = "null";
+        final String URL = "null";
 
         MongoConnector mongoConnector = new MongoConnector();
         GetIngredientsFromTheSite getIngredients = new GetIngredientsFromTheSite();

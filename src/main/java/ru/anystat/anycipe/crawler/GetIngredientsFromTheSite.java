@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class GetIngredientsFromTheSite {
 
-    private final String URL = "85.143.221.95";
-    private final String baseName = "anycipe_crawler";
-    private final String collectionName = "ingredients";
+    private final String URL = "null";
+    private final String baseName = "null";
+    private final String collectionName = "null";
     private final String SITE = "http://www.bazareceptov.ru/ingredients.php?page=";
     private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
     private List fullListOfIngredients = new ArrayList();
